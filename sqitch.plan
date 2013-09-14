@@ -1,0 +1,13 @@
+%syntax-version=1.0.0-b2
+%project=enterprise_chef
+%uri=https://github.com/opscode/enterprise-chef-server-schema
+
+drop_osc_users [oss_chef:osc_users] 2013-09-05T19:22:00Z Christopher Maier <cm@opscode.com> # Remove osc_users table
+users [drop_osc_users] 2013-09-04T13:54:01Z Christopher Maier <cm@opscode.com> # users table
+opc_customers 2013-09-04T16:05:27Z Christopher Maier <cm@opscode.com> # OPC customers table
+opc_users [users opc_customers] 2013-09-04T16:15:19Z Christopher Maier <cm@opscode.com> # OPC users table
+reporting_schema_info 2013-09-04T21:07:31Z Christopher Maier <cm@opscode.com> # Add reporting_schema_info table
+widen_uuid_fields [oss_chef:roles oss_chef:clients oss_chef:data_bags oss_chef:data_bag_items oss_chef:environments] 2013-09-05T20:25:39Z Christopher Maier <cm@opscode.com> # Widen UUID fields used by Solr
+delete_migrated_couch_data [oss_chef:cookbook_version_checksums oss_chef:checksums oss_chef:cookbook_versions oss_chef:cookbooks oss_chef:environments oss_chef:roles oss_chef:clients oss_chef:data_bag_items oss_chef:data_bags] 2013-09-04T21:18:40Z Christopher Maier <cm@opscode.com> # Add delete_migrated_couch_data stored procedure
+org_migration_state 2013-09-04T21:27:50Z Christopher Maier <cm@opscode.com> # Add org_migration_state table
+@2.0.0 2013-09-04T21:58:35Z Christopher Maier <cm@opscode.com> # Use Sqitch for schema management
