@@ -16,24 +16,26 @@ all : setup_schema setup_tests test
 clean:
 	rm -Rf deps
 
+# Installs dependencies locally; does not run migrations
+install: deps/chef-server-schema
+
 deps:
 	mkdir deps
-	# This can be an https URL when we open the open-source schema up
-	cd deps; git clone git@github.com:opscode/chef-server-schema.git
 
-oss_checkout: deps
-	cd deps/chef-server-schema; git checkout $(OSS_SCHEMA_VERSION)
+deps/chef-server-schema: deps
+	# This can be an https URL when we open the open-source schema up
+	cd deps; git clone git@github.com:opscode/chef-server-schema.git; cd chef-server-schema; git checkout $(OSS_SCHEMA_VERSION)
 
 # Load up all schema changesets
-setup_schema: oss_checkout
-	make -C deps/chef-server-schema setup_schema
+setup_schema: install
+	$(MAKE) -C deps/chef-server-schema setup_schema
 	@echo "Deploying Enterprise Chef Server Schema on top..."
 	@sqitch --engine pg --db-name $(TEST_DB) deploy
 
 # Load up all testing functions.  pgTAP libraries and open source
 # schema test functions are loaded by the open source makefile target
-setup_tests: oss_checkout
-	make -C deps/chef-server-schema setup_tests
+setup_tests: install
+	$(MAKE) -C deps/chef-server-schema setup_tests
 	psql --dbname $(TEST_DB) \
 	     --single-transaction \
 	     --set ON_ERROR_STOP=1 \
