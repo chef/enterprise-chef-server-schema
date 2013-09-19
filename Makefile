@@ -1,7 +1,7 @@
 # The version of the open source schema that this version of the
 # enterprise schema depends on.  Change this as new versions become
 # available.
-OSS_SCHEMA_VERSION=1.0.3
+OSC_SCHEMA_VERSION=1.0.3
 
 # The name of the database that will be created to run pgTAP tests
 # against.
@@ -24,7 +24,7 @@ deps:
 
 deps/chef-server-schema: deps
 	# This can be an https URL when we open the open-source schema up
-	cd deps; git clone git@github.com:opscode/chef-server-schema.git; cd chef-server-schema; git checkout $(OSS_SCHEMA_VERSION)
+	cd deps; git clone git@github.com:opscode/chef-server-schema.git; cd chef-server-schema; git checkout $(OSC_SCHEMA_VERSION)
 
 # Load up all schema changesets
 setup_schema: install
