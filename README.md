@@ -5,12 +5,22 @@ This repository defines additions to the
 [Open Source Chef Server schema][] that will create an Enterprise Chef
 database schema.
 
+*NOTE*: This _does not_ turn an Open Source database into an
+ Enterprise database.  This _does not_ provide some kind of "upgrade"
+ path from the one to the other.  If you try to use it that way, your
+ resulting sadness is all on you.
+
 All instructions for the open source Chef Server schema apply for
 this repository as well; perform all the setup as instructed there.
 
-Additionally, you will need to have a checkout of the open source
-schema repository as a sibling of this repository.  The schema and
-tests of this repository build off the same from there.
+You do not need to have a local checkout of the open source schema
+repository to work with this one.  The Makefile will perform a local
+checkout of the open source schema, stored in the `deps` directory.
+If you want to do local hacking, try setting up a symlink to your
+local checkout.
+
+Note that the specific version of the open source schema you depend on
+is defined at the top of the Makefile.
 
 [Open Source Chef Server schema]:http://github.com/opscode/chef-server-schema
 
@@ -40,6 +50,4 @@ make
 
 The targets of the [Makefile](Makefile) actually call out to
 corresponding targets in the
-[Open Source Makefile](https://github.com/opscode/chef-server-schema/blob/master/Makefile);
-this is why you must currently have a checkout of that code in a
-sibling directory.
+[Open Source Makefile](https://github.com/opscode/chef-server-schema/blob/master/Makefile).
