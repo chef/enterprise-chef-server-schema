@@ -11,3 +11,4 @@ widen_uuid_fields [oss_chef:roles oss_chef:clients oss_chef:data_bags oss_chef:d
 delete_migrated_couch_data [oss_chef:cookbook_version_checksums oss_chef:checksums oss_chef:cookbook_versions oss_chef:cookbooks oss_chef:environments oss_chef:roles oss_chef:clients oss_chef:data_bag_items oss_chef:data_bags] 2013-09-04T21:18:40Z Christopher Maier <cm@opscode.com> # Add delete_migrated_couch_data stored procedure
 org_migration_state 2013-09-04T21:27:50Z Christopher Maier <cm@opscode.com> # Add org_migration_state table
 @2.0.0 2013-09-04T21:58:35Z Christopher Maier <cm@opscode.com> # Use Sqitch for schema management
+@2.0.1 2013-09-23T09:52:31Z Christopher Maier <cm@opscode.com> # Placeholder version to keep in sync with repo tag
