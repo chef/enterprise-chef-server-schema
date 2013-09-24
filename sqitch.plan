@@ -14,4 +14,4 @@ org_migration_state 2013-09-04T21:27:50Z Christopher Maier <cm@opscode.com> # Ad
 @2.0.1 2013-09-23T09:52:31Z Christopher Maier <cm@opscode.com> # Placeholder version to keep in sync with repo tag
 
 containers 2013-09-23T17:46:57Z Mark Anderson <mark@opscode.com> # Add containers table  
-groups 2013-09-23T18:21:28Z vagrant,,, <vagrant@private-chef.opscode.piab># Add groups in sql
+groups 2013-09-23T18:21:28Z  Mark Anderson <mark@opscode.com> # Add groups in sql
