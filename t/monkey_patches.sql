@@ -20,7 +20,8 @@ AS $$
          (p_table_name = 'data_bags' AND p_column_name = 'id') OR
          (p_table_name = 'roles' AND p_column_name = 'id') OR
          (p_table_name = 'environments' AND p_column_name = 'id') OR
-	 (p_table_name = 'containers' AND p_column_name = 'id')
+	 (p_table_name = 'containers' AND p_column_name = 'id') OR
+	 (p_table_name = 'groups' AND p_column_name = 'id')
 $$;
 
 CREATE OR REPLACE FUNCTION chef_pgtap.col_is_uuid(p_table_name NAME, p_column_name NAME, p_is_unique BOOLEAN)
