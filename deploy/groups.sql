@@ -3,7 +3,7 @@
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS groups(
-  id CHAR(36) PRIMARY KEY,
+  id VARCHAR(36) PRIMARY KEY,
 
 -- We may wish to allow 'null' org_ids in the future to represent
 -- global groups (organizations and users). Otherwise we should
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS groups(
   org_id CHAR(32) NOT NULL,
   authz_id CHAR(32) NOT NULL UNIQUE,
   name TEXT NOT NULL,
-  CONSTRAINT groups_org_id_name_unique UNIQUE(org_id, name),
+  CONSTRAINT groups_org_id_name_key UNIQUE(org_id, name),
   last_updated_by CHAR(32) NOT NULL,
   created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
