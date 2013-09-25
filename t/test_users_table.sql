@@ -53,6 +53,21 @@ BEGIN
 
   RETURN QUERY SELECT chef_pgtap.col_is_flag('users', 'admin', FALSE);
 
+  RETURN QUERY SELECT has_column('users', 'hashed_password');
+  RETURN QUERY SELECT col_is_null('users', 'hashed_password');
+  RETURN QUERY SELECT col_type_is('users', 'hashed_password', 'text');
+  RETURN QUERY SELECT col_hasnt_default('users', 'hashed_password');
+
+  RETURN QUERY SELECT has_column('users', 'salt');
+  RETURN QUERY SELECT col_is_null('users', 'salt');
+  RETURN QUERY SELECT col_type_is('users', 'salt', 'text');
+  RETURN QUERY SELECT col_hasnt_default('users', 'salt');
+
+  RETURN QUERY SELECT has_column('users', 'hash_type');
+  RETURN QUERY SELECT col_is_null('users', 'hash_type');
+  RETURN QUERY SELECT col_type_is('users', 'hash_type', 'password_hash_type');
+  RETURN QUERY SELECT col_hasnt_default('users', 'hash_type');
+
   -- Indexes
 
   RETURN QUERY SELECT chef_pgtap.has_index('users', 'users_authz_id_key', 'authz_id');
@@ -64,5 +79,35 @@ BEGIN
   RETURN QUERY SELECT has_pk('users');
   RETURN QUERY SELECT hasnt_fk('users');
 
+  -- Constraints
+  RETURN QUERY SELECT col_has_check('users', ARRAY['hashed_password', 'salt', 'hash_type']);
+
+  -- Value constraint checks
+    PREPARE password_hash_deps_check_1 AS
+    INSERT INTO USERS (id, authz_id, username, last_updated_by, created_at, updated_at, pubkey_version, hashed_password)
+               VALUES ('a', 'a', 'a', 'a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 'SomeValueForPassword');
+
+    PREPARE password_hash_deps_check_2 AS
+    INSERT INTO USERS (id, authz_id, username, last_updated_by, created_at, updated_at, pubkey_version, hash_type)
+               VALUES ('a', 'a', 'a', 'a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 'SHA1');
+
+    PREPARE password_hash_deps_check_3 AS
+    INSERT INTO USERS (id, authz_id, username, last_updated_by, created_at, updated_at, pubkey_version, salt)
+               VALUES ('a', 'a', 'a', 'a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 'SomeSaltyGoodness');
+
+    PREPARE password_hash_deps_check_4 AS
+    INSERT INTO USERS (id, authz_id, username, last_updated_by, created_at, updated_at, pubkey_version, hashed_password, salt)
+               VALUES ('a', 'a', 'a', 'a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 'Something Hashed', 'SomeSaltyGoodness');
+
+    PREPARE password_hash_deps_check_5 AS
+    INSERT INTO USERS (id, authz_id, username, last_updated_by, created_at, updated_at, pubkey_version, hashed_password, hash_type, salt)
+               VALUES ('a', 'a', 'a', 'a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 'Something Hashed', 'SHA1', 'SomeSaltyGoodness');
+
+   -- new row for relation "users" violates check constraint "password_hash_deps"
+   RETURN QUERY SELECT throws_ok('password_hash_deps_check_1', '23514', NULL, 'hashedpassword is not accepted without hashtype and salt');
+   RETURN QUERY SELECT throws_ok('password_hash_deps_check_2', '23514', NULL, 'hashtype is not accepted without hashedpassword and salt');
+   RETURN QUERY SELECT throws_ok('password_hash_deps_check_3', '23514', NULL, 'salt is not accepted without hashtype and hashedpassword');
+   RETURN QUERY SELECT throws_ok('password_hash_deps_check_4', '23514', NULL, 'hashedpassword and salt are not accepted without hashtype');
+   RETURN QUERY SELECT lives_ok('password_hash_deps_check_5', 'salt, hashtype, and hashedpassword are accepted together');
 END;
 $$;
