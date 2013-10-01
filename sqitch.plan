@@ -19,3 +19,4 @@ users_password_hash_split [users] 2013-09-24T14:42:14Z Marc Paradise <marc@opsco
 @2.1.0 2013-09-25T01:26:17Z Marc Paradise <marc@alienix># 2.1.0 - to be synced with release tag
 groups 2013-09-23T18:21:28Z Mark Anderson <mark@opscode.com> # Add groups in sql
 @2.2.0 2013-09-25T05:53:40Z Mark Anderson <mark@opscode.com> # Add groups in sql
+@2.2.1 2013-10-01T20:57:23Z Mark Anderson <mark@opscode.com> # sync with 2.2.1 git tag
