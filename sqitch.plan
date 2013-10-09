@@ -20,3 +20,5 @@ users_password_hash_split [users] 2013-09-24T14:42:14Z Marc Paradise <marc@opsco
 groups 2013-09-23T18:21:28Z Mark Anderson <mark@opscode.com> # Add groups in sql
 @2.2.0 2013-09-25T05:53:40Z Mark Anderson <mark@opscode.com> # Add groups in sql
 @2.2.1 2013-10-01T20:57:23Z Mark Anderson <mark@opscode.com> # sync with 2.2.1 git tag
+
+opc_users_customer_id_index [opc_users] 2013-10-09T14:09:35Z Oliver Ferrigni <oliver@opscode.com># Add index opc_users(customer_id)
