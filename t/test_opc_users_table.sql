@@ -39,5 +39,7 @@ BEGIN
   RETURN QUERY SELECT chef_pgtap.fk_update_action_is('opc_users_user_id_fkey', 'NO ACTION');
   RETURN QUERY SELECT chef_pgtap.fk_delete_action_is('opc_users_user_id_fkey', 'CASCADE');
 
+  RETURN QUERY SELECT chef_pgtap.has_index('opc_users', 'opc_users_customer_id_index', 'customer_id');
+
 END;
 $$;
