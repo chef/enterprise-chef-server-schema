@@ -1,7 +1,7 @@
 # The version of the open source schema that this version of the
 # enterprise schema depends on.  Change this as new versions become
 # available.
-OSC_SCHEMA_VERSION=1.0.3
+OSC_SCHEMA_VERSION=1.0.4
 
 # The name of the database that will be created to run pgTAP tests
 # against.
