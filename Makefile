@@ -11,6 +11,8 @@ TEST_DB = opscode_chef_test
 # functions
 TEST_FUNCTIONS = $(wildcard t/test_*.sql)
 
+# Sleep time to allow user to cancel sqitch operations
+SLEEP_TIME = 5
 all : setup_schema setup_tests test
 
 clean:
@@ -48,4 +50,34 @@ test:
 		  --verbose \
 		  t/enterprise_chef_server_schema.pg
 
-.PHONY: all clean install setup_schema setup_tests test
+deploy:
+	@if [ -z "$$EC_TARGET" ]; then \
+		EC_TARGET="@`git describe`"; \
+	fi; \
+	if [ -z "$$OSC_TARGET" ]; then \
+		OSC_TARGET="@$(OSC_SCHEMA_VERSION)"; \
+	fi; \
+	if [ -z "$$DB_USER" ]; then \
+		read -p "Please enter the user to run as: " DB_USER; \
+	fi; \
+	echo "EC Target: $$EC_TARGET OSC Target: $$OSC_TARGET DB User: $$DB_USER"; \
+	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
+	sleep $(SLEEP_TIME); \
+	sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch deploy --to-target $$OSC_TARGET --verify  && popd && sqitch deploy --to-target $$EC_TARGET --verify"
+
+revert:
+	@if [ -z "$$EC_TARGET" ]; then \
+		read -p "Please enter the enterprise changeset: " EC_TARGET; \
+	fi; \
+	if [ -z "$$OSC_TARGET" ]; then \
+		read -p "Please enter the osc changeset: " OSC_TARGET; \
+	fi; \
+	if [ -z "$$DB_USER" ]; then \
+		read -p "Please enter the user to run as: " DB_USER; \
+	fi; \
+	echo "EC Target: $$EC_TARGET OSC Target: $$OSC_TARGET DB User: $$DB_USER"; \
+	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
+	sleep $(SLEEP_TIME); \
+	sudo su $$DB_USER -c "sqitch revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch revert --to-target $$OSC_TARGET -y && popd"
+
+.PHONY: all clean install setup_schema setup_tests test deploy revert
