@@ -26,3 +26,4 @@ opc_users_customer_id_index [opc_users] 2013-10-09T14:09:35Z Oliver Ferrigni <ol
 @2.2.3 2013-10-14T20:26:26Z Oliver Ferrigni <oliver@opscode.com># Makefile updates
 
 drop_reporting_schema_info [reporting_schema_info] 2014-01-08T22:04:01Z Mark Mzyk <mmzyk@opscode.com> # Drop reporting_schema_info table that is not needed
+add_migration_type [org_migration_state] 2014-01-07T18:28:10Z Oliver Ferrigni <oliver@getchef.com> # Add column migration type to org_migration_status
