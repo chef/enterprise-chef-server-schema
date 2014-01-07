@@ -33,7 +33,7 @@ BEGIN
   RETURN QUERY SELECT col_default_is('org_migration_state', 'state', 'holding');
 
   -- Keys
-  RETURN QUERY SELECT has_pk('org_migration_state', 'id');
+  RETURN QUERY SELECT has_pk('org_migration_state', 'org_id, migration_type');
   RETURN QUERY SELECT hasnt_fk('org_migration_state');
 
 END;
