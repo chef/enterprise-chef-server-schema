@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT hashed_password, salt, hash_type FROM users WHERE FALSE;
+SELECT migration_type FROM org_migration_state WHERE FALSE;
 
 ROLLBACK;

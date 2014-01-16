@@ -7,7 +7,7 @@ BEGIN;
 SELECT 1/COUNT(*) FROM pg_type WHERE typname = 'org_state';
 
 SELECT id, org_name, org_id, state, fail_location,
-       migration_start, migration_end, migration_type
+       migration_start, migration_end
 FROM org_migration_state
 WHERE FALSE;
 
