@@ -32,7 +32,7 @@ deps/chef-server-schema: deps
 setup_schema: install
 	$(MAKE) -C deps/chef-server-schema setup_schema
 	@echo "Deploying Enterprise Chef Server Schema on top..."
-	@sqitch --engine pg --db-name $(TEST_DB) deploy
+	@sqitch --engine pg --db-name $(TEST_DB) deploy --verify
 
 # Load up all testing functions.  pgTAP libraries and open source
 # schema test functions are loaded by the open source makefile target
