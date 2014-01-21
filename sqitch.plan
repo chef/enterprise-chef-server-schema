@@ -29,3 +29,4 @@ drop_reporting_schema_info [reporting_schema_info] 2014-01-08T22:04:01Z Mark Mzy
 add_migration_type [org_migration_state] 2014-01-07T18:28:10Z Oliver Ferrigni <oliver@getchef.com> # Add column migration type to org_migration_status
 create_composite_key_org_migration_state 2014-01-07T23:36:23Z Oliver Ferrigni <oliver@getchef.com> # Adjust the primary key to be a composite key of org_id and migration type
 migrate_org_migration_status_to_migratation_type 2014-01-08T16:33:23Z Oliver Ferrigni <oliver@getchef.com> # Convert to using migration_type exploding purge_successful rows into two rows
+@2.2.4 2014-01-21T22:00:55Z Oliver Ferrigni <oliver@getchef.com># Tag with 2.2.4
