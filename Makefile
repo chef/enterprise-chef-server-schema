@@ -32,7 +32,7 @@ deps/chef-server-schema: deps
 setup_schema: install
 	$(MAKE) -C deps/chef-server-schema setup_schema
 	@echo "Deploying Enterprise Chef Server Schema on top..."
-	@sqitch --engine pg --db-name $(TEST_DB) deploy
+	@sqitch --engine pg --db-name $(TEST_DB) deploy --verify
 
 # Load up all testing functions.  pgTAP libraries and open source
 # schema test functions are loaded by the open source makefile target
@@ -63,7 +63,11 @@ deploy:
 	echo "EC Target: $$EC_TARGET OSC Target: $$OSC_TARGET DB User: $$DB_USER"; \
 	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
 	sleep $(SLEEP_TIME); \
-	sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch deploy --to-target $$OSC_TARGET --verify  && popd && sqitch deploy --to-target $$EC_TARGET --verify"
+	if [ -z "$$DB_NAME" ]; then \
+		sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch deploy --to-target $$OSC_TARGET --verify  && popd && sqitch deploy --to-target $$EC_TARGET --verify"; \
+	else \
+		sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch --db-name $$DB_NAME deploy --to-target $$OSC_TARGET --verify  && popd && sqitch --db-name $$DB_NAME deploy --to-target $$EC_TARGET --verify"; \
+	fi
 
 revert:
 	@if [ -z "$$EC_TARGET" ]; then \
@@ -78,6 +82,10 @@ revert:
 	echo "EC Target: $$EC_TARGET OSC Target: $$OSC_TARGET DB User: $$DB_USER"; \
 	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
 	sleep $(SLEEP_TIME); \
-	sudo su $$DB_USER -c "sqitch revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch revert --to-target $$OSC_TARGET -y && popd"
+	if [ -z "$$DB_NAME" ]; then \
+		sudo su $$DB_USER -c "sqitch revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch revert --to-target $$OSC_TARGET -y && popd"; \
+	else \
+		sudo su $$DB_USER -c "sqitch --db-name $$DB_NAME revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch --db-name $$DB_NAME revert --to-target $$OSC_TARGET -y && popd"; \
+	fi
 
 .PHONY: all clean install setup_schema setup_tests test deploy revert
