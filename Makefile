@@ -11,6 +11,8 @@ TEST_DB = opscode_chef_test
 # functions
 TEST_FUNCTIONS = $(wildcard t/test_*.sql)
 
+BASE_DIR = $(shell pwd)
+
 # Sleep time to allow user to cancel sqitch operations
 SLEEP_TIME = 5
 all : setup_schema setup_tests test
@@ -64,9 +66,9 @@ deploy:
 	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
 	sleep $(SLEEP_TIME); \
 	if [ -z "$$DB_NAME" ]; then \
-		sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch deploy --to-target $$OSC_TARGET --verify  && popd && sqitch deploy --to-target $$EC_TARGET --verify"; \
+		sudo su -l $$DB_USER -c "cd $(BASE_DIR) && cd deps/chef-server-schema && sqitch deploy --to-target $$OSC_TARGET --verify  && cd ../.. && sqitch deploy --to-target $$EC_TARGET --verify"; \
 	else \
-		sudo su $$DB_USER -c "pushd deps/chef-server-schema && sqitch --db-name $$DB_NAME deploy --to-target $$OSC_TARGET --verify  && popd && sqitch --db-name $$DB_NAME deploy --to-target $$EC_TARGET --verify"; \
+		sudo su -l $$DB_USER -c "cd $(BASE_DIR) && cd deps/chef-server-schema && sqitch --db-name $$DB_NAME deploy --to-target $$OSC_TARGET --verify  && cd ../.. && sqitch --db-name $$DB_NAME deploy --to-target $$EC_TARGET --verify"; \
 	fi
 
 revert:
@@ -83,9 +85,9 @@ revert:
 	echo "Sleeping for $(SLEEP_TIME) seconds in case you want to cancel"; \
 	sleep $(SLEEP_TIME); \
 	if [ -z "$$DB_NAME" ]; then \
-		sudo su $$DB_USER -c "sqitch revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch revert --to-target $$OSC_TARGET -y && popd"; \
+		sudo su -l $$DB_USER -c "cd $(BASE_DIR) && sqitch revert --to-target $$EC_TARGET -y && cd deps/chef-server-schema && sqitch revert --to-target $$OSC_TARGET -y && cd ../.."; \
 	else \
-		sudo su $$DB_USER -c "sqitch --db-name $$DB_NAME revert --to-target $$EC_TARGET -y && pushd deps/chef-server-schema && sqitch --db-name $$DB_NAME revert --to-target $$OSC_TARGET -y && popd"; \
+		sudo su -l $$DB_USER -c "cd $(BASE_DIR) && sqitch --db-name $$DB_NAME revert --to-target $$EC_TARGET -y && cd deps/chef-server-schema && sqitch --db-name $$DB_NAME revert --to-target $$OSC_TARGET -y && cd ../.."; \
 	fi
 
 .PHONY: all clean install setup_schema setup_tests test deploy revert
