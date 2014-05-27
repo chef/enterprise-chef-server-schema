@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE if EXISTS groups;
+DROP TABLE IF EXISTS groups;
 
 COMMIT;

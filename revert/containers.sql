@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE if EXISTS containers;
+DROP TABLE IF EXISTS containers;
 
 COMMIT;

@@ -12,7 +12,7 @@ BEGIN
   RETURN QUERY SELECT col_is_pk('groups', 'id');
 
   RETURN QUERY SELECT chef_pgtap.col_is_uuid('groups', 'authz_id', TRUE);
-  RETURN QUERY SELECT chef_pgtap.col_is_uuid('data_bags', 'org_id');
+  RETURN QUERY SELECT chef_pgtap.col_is_uuid('groups', 'org_id');
 
   RETURN QUERY SELECT chef_pgtap.col_is_name('groups', 'name');
 
