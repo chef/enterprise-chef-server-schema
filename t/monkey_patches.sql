@@ -22,7 +22,8 @@ AS $$
          (p_table_name = 'environments' AND p_column_name = 'id') OR
 	 (p_table_name = 'containers' AND p_column_name = 'id') OR
 	 (p_table_name = 'groups' AND p_column_name = 'id') OR
-	 (p_table_name = 'organizations' AND p_column_name = 'couchdb_id')
+	 (p_table_name = 'organizations' AND p_column_name = 'couchdb_id') OR
+	 (p_table_name = 'org_user_associations' AND p_column_name = 'user_id')
 
 $$;
 
