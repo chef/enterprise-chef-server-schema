@@ -32,5 +32,6 @@ migrate_org_migration_status_to_migratation_type 2014-01-08T16:33:23Z Oliver Fer
 @2.2.4 2014-01-21T22:00:55Z Oliver Ferrigni <oliver@getchef.com># Tag with 2.2.4
 
 organizations 2014-05-29T17:45:19Z Mark Anderson <mark@getchef.com> # Add an organizations table
-org_user_associations 2014-05-29T20:26:29Z Mark Anderson <mark@alecto.local> # Add the org user association table
-org_user_invites 2014-05-29T20:59:32Z Mark Anderson <mark@alecto.local> # Add the org user invite table
+org_user_associations 2014-05-29T20:26:29Z Mark Anderson <mark@getchef.com> # Add the org user association table
+org_user_invites 2014-05-29T20:59:32Z Mark Anderson <mark@getchef.com> # Add the org user invite table
+@2.2.6 2014-06-04T00:07:12Z Mark Anderson <mark@getchef.com> # Tag with 2.2.6
