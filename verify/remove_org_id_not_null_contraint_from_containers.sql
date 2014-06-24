@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT 1/COUNT(is_nullable) FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'containers' AND column_name = 'org_id' AND is_nullable = 'YES';
 
 ROLLBACK;
