@@ -12,7 +12,10 @@ BEGIN
   RETURN QUERY SELECT col_is_pk('containers', 'id');
 
   RETURN QUERY SELECT chef_pgtap.col_is_uuid('containers', 'authz_id', TRUE);
-  RETURN QUERY SELECT chef_pgtap.col_is_uuid('containers', 'org_id');
+
+  RETURN QUERY SELECT has_column('containers', 'org_id');
+  RETURN QUERY SELECT col_type_is('containers', 'org_id', 'character(32)');
+  RETURN QUERY SELECT col_hasnt_default('containers', 'org_id');
 
   RETURN QUERY SELECT chef_pgtap.col_is_name('containers', 'name');
 
