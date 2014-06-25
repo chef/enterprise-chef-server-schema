@@ -35,3 +35,5 @@ organizations 2014-05-29T17:45:19Z Mark Anderson <mark@getchef.com> # Add an org
 org_user_associations 2014-05-29T20:26:29Z Mark Anderson <mark@getchef.com> # Add the org user association table
 org_user_invites 2014-05-29T20:59:32Z Mark Anderson <mark@getchef.com> # Add the org user invite table
 @2.2.6 2014-06-04T00:07:12Z Mark Anderson <mark@getchef.com> # Tag with 2.2.6
+
+remove_org_id_not_null_contraint_from_containers 2014-06-12T21:43:16Z Tyler Cloke <tyler@getchef.com> # Remove not null from org_id in containers.
