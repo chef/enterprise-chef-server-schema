@@ -37,3 +37,4 @@ org_user_invites 2014-05-29T20:59:32Z Mark Anderson <mark@getchef.com> # Add the
 @2.2.6 2014-06-04T00:07:12Z Mark Anderson <mark@getchef.com> # Tag with 2.2.6
 
 fix_unique_constraints_and_indices_in_org_user_association 2014-07-15T17:32:22Z Tyler Cloke <tyler@getchef.com> # Clean up org_user_associations table
+fix_unique_constraints_and_indices_in_org_user_invites 2014-07-16T11:01:01Z Tyler Cloke <tyler@getchef.com> # Clean up org_user_invites table
