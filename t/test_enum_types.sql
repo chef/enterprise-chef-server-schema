@@ -15,7 +15,9 @@ BEGIN
   RETURN QUERY SELECT enum_has_labels( 'password_hash_type',
                                         ARRAY['SHA1',
                                               'SHA1-bcrypt',
-                                              'bcrypt'],
+                                              'bcrypt',
+                                              'erlang-bcrypt-0.5.0',
+                                              'sha1+bcrypt'],
                                         'password_hash_type should have known labels');
 
   RETURN QUERY SELECT enum_has_labels( 'org_state',
