@@ -27,8 +27,8 @@ deps:
 	mkdir deps
 
 deps/chef-server-schema: deps
-	# This can be an https URL when we open the open-source schema up
-	cd deps; git clone git@github.com:opscode/chef-server-schema.git; cd chef-server-schema; git checkout $(OSC_SCHEMA_VERSION)
+        # This can be an https URL when we open the open-source schema up
+	cd deps; git clone https://github.com/opscode/chef-server-schema; cd chef-server-schema; git checkout $(OSC_SCHEMA_VERSION)
 
 # Load up all schema changesets
 setup_schema: install
