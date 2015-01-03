@@ -44,3 +44,5 @@ osc_password_hash_type_update [password_hash_type] 2014-08-15T15:47:45Z Mark Mzy
 
 multiple_keys 2014-12-29T23:45:05Z Mark Anderson <mark@chef.io> # Add keys table to support multiple keys
 keys_drop_trigger 2015-01-03T01:25:39Z Mark Anderson <mark@chef.io># Keys table drop trigger to maintain consistency
+keys_update_trigger 2015-01-03T01:33:03Z Mark Anderson <mark@chef.io># Triggers to keep keys table consistient with clients and users tables.
+
