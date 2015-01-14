@@ -51,3 +51,4 @@ multiple_keys_migration 2015-01-03T02:29:48Z Mark Anderson <mark@chef.io># Add m
 @2.5.2 2015-01-20T23:03:35Z Marc Paradise <marc@chef.io> # Tag with 2.5.2 for expire_at on key view
 @2.5.3 2015-01-23T15:43:00Z Marc Paradise <marc@chef.io> # Modify client/user update trigger to insert missing default key
 policies 2015-01-14T21:16:03Z Oliver Ferrigni <oliver@getchef.com> # Add policies table
+node_policy [policies] 2015-01-14T21:48:37Z Oliver Ferrigni <oliver@getchef.com> # Add node policies table
