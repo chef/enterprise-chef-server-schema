@@ -15,12 +15,13 @@ CREATE OR REPLACE FUNCTION migrate_keys() RETURNS void AS $migrate_keys$
     -- add clients
     INSERT INTO "keys"
       (id, key_name, public_key, key_version, created_at,  expires_at)
-	SELECT id, 'default', public_key, pubkey_version, updated_at, 'infinity'::timestamp FROM clients 
+	SELECT id, 'default', public_key, pubkey_version, updated_at, 'infinity'::timestamp FROM clients
       WHERE NOT EXISTS (SELECT 1 FROM keys where id=clients.id);
     -- add users
     INSERT INTO "keys"
       (id, key_name, public_key, key_version, created_at,  expires_at)
-	SELECT id, 'default', public_key, pubkey_version, updated_at, 'infinity'::timestamp FROM users 
+	SELECT id, 'default', public_key, pubkey_version, updated_at, 'infinity'::timestamp FROM users
       WHERE NOT EXISTS (SELECT 1 FROM keys where id=users.id);
   END;
 $migrate_keys$ LANGUAGE plpgsql;
+COMMIT;
