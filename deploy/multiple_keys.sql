@@ -23,14 +23,14 @@ CREATE TABLE keys(
 --
 -- This should simplify lookup in the authorization check function.
 -- Authz id is added to make this a one stop query.
--- 
+--
 -- This needs some benchmarking on real data sizes; this may trigger sequential scans
 -- when we do something like
--- select id,org_id,name,type from keys_by_name where name ='wei' AND (org_id='global' OR org_id='181131e4e896ec930f5ca3f36b490c1f');; 
--- 
-CREATE OR REPLACE view keys_by_name AS 
-SELECT id, org_id, name, authz_id, 'client' AS type, key_name, keys.public_key, key_version FROM clients INNER JOIN keys USING (id) 
+-- select id,org_id,name,type from keys_by_name where name ='wei' AND (org_id='global' OR org_id='181131e4e896ec930f5ca3f36b490c1f');;
+--
+CREATE OR REPLACE view keys_by_name AS
+SELECT id, org_id, name, authz_id, 'client' AS type, key_name, keys.public_key, key_version, expires_at FROM clients INNER JOIN keys USING (id)
 UNION ALL
-SELECT id, 'global', username AS name, authz_id, 'user' AS type, key_name, keys.public_key, key_version FROM users INNER JOIN keys USING (id);
+SELECT id, 'global', username AS name, authz_id, 'user' AS type, key_name, keys.public_key, key_version, expires_at FROM users INNER JOIN keys USING (id);
 
 COMMIT;
