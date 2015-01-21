@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS policies(
   CONSTRAINT policies_org_id_fkey
     FOREIGN KEY (org_id)
     REFERENCES orgs(id)
+    ON DELETE CASCADE
 );
 
 COMMIT
