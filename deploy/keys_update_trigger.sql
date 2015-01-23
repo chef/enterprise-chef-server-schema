@@ -1,7 +1,7 @@
 -- Deploy keys_update_trigger
 --
 -- This keeps the keys table consistent when the clients and user tables update their keys
--- 
+--
 BEGIN;
 
 CREATE OR REPLACE FUNCTION add_key() RETURNS TRIGGER AS $add_key$
@@ -18,8 +18,11 @@ $add_key$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION update_key() RETURNS TRIGGER AS $update_key$
    BEGIN
      IF NEW.public_key IS NOT NULL THEN
-       UPDATE keys SET public_key = NEW.public_key, key_version = NEW.pubkey_version
+       UPDATE keys SET public_key = NEW.public_key, key_version = NEW.pubkey_version, expires_at = 'infinity'::timestamp
          WHERE id = NEW.id AND key_name = 'default';
+       INSERT INTO  keys (id, key_name, public_key, key_version, created_at, expires_at)
+         SELECT NEW.id, 'default', NEW.public_key, NEW.pubkey_version, now(), 'infinity'::timestamp
+         WHERE NOT EXISTS (SELECT 1 FROM keys WHERE id = NEW.id AND key_name = 'default');
      ELSE
        DELETE FROM keys WHERE id = NEW.id AND key_name = 'default';
      END IF;
