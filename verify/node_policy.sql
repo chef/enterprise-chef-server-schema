@@ -2,6 +2,8 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT node_id, name, policy_group
+FROM node_policy
+WHERE FALSE;
 
 ROLLBACK;
