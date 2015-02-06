@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS node_policy(
     CONSTRAINT node_policy_node_id_fkey
       FOREIGN KEY(node_id)
       REFERENCES nodes(id)
+      ON DELETE CASCADE
 );
 
 COMMIT
