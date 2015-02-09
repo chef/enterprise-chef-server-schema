@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS cookbook_artifact_versions(
   updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   last_updated_by CHAR(32) NOT NULL,
-  cookbook_artifact_id INTEGER NOT NULL REFERENCES cookbook_artifacts(id) ON DELETE RESTRICT,
+  cookbook_id INTEGER NOT NULL REFERENCES cookbooks(id) ON DELETE RESTRICT,
   UNIQUE(cookbook_id, identifier)
 );
 
