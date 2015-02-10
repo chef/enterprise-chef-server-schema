@@ -59,3 +59,7 @@ cookbook_artifacts 2015-02-03T17:34:42Z Jean Rouge <jean@chef.io> # Creating coo
 cookbook_artifact_versions [cookbook_artifacts] 2015-02-03T17:34:42Z Jean Rouge <jean@chef.io> # Creating cookbook_artifacts tables
 cookbook_artifact_version_checksums [cookbook_artifact_versions] 2015-02-03T17:34:42Z Jean Rouge <jean@chef.io> # Creating cookbook_artifacts tables
 @2.7.0 2015-02-03T20:02:46Z Jean Rouge <jean@chef.io> # Tagging with 2.6.0
+
+insert_cookbook_artifact_version [cookbook_artifact_version_checksums] 2015-02-09T23:45:03Z Jean Rouge <jean@chef.io>
+@2.8.0 2015-02-09T23:46:59Z Jean Rouge <jean@chef.io> # Tagging with 2.8.0
+

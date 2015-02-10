@@ -11,7 +11,6 @@ BEGIN
                                                                                'org_id',
                                                                                'checksum']);
 
-  RETURN QUERY SELECT chef_pgtap.col_is_uuid('cookbook_artifact_version_checksums', 'cookbook_artifact_version_id');
   RETURN QUERY SELECT chef_pgtap.col_is_uuid('cookbook_artifact_version_checksums', 'org_id');
   RETURN QUERY SELECT chef_pgtap.col_is_uuid('cookbook_artifact_version_checksums', 'checksum');
 

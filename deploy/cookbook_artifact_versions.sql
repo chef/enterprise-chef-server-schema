@@ -4,7 +4,7 @@
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS cookbook_artifact_versions(
-  id CHAR(32) PRIMARY KEY,
+  id BIGSERIAL PRIMARY KEY,
   identifier VARCHAR(255) NOT NULL,
   meta_attributes bytea NOT NULL,
   meta_long_desc bytea NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS cookbook_artifact_versions(
   updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   last_updated_by CHAR(32) NOT NULL,
-  cookbook_id INTEGER NOT NULL REFERENCES cookbooks(id) ON DELETE RESTRICT,
-  UNIQUE(cookbook_id, identifier)
+  cookbook_artifact_id INTEGER NOT NULL REFERENCES cookbook_artifacts(id) ON DELETE RESTRICT,
+  UNIQUE(cookbook_artifact_id, identifier)
 );
 
 ALTER TABLE cookbook_artifact_versions ALTER meta_attributes SET STORAGE EXTERNAL;
