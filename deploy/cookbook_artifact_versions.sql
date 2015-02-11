@@ -6,8 +6,6 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS cookbook_artifact_versions(
   id BIGSERIAL PRIMARY KEY,
   identifier VARCHAR(255) NOT NULL,
-  meta_attributes bytea NOT NULL,
-  meta_long_desc bytea NOT NULL,
   metadata bytea NOT NULL,
   serialized_object bytea NOT NULL,
   created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
@@ -16,8 +14,6 @@ CREATE TABLE IF NOT EXISTS cookbook_artifact_versions(
   UNIQUE(cookbook_artifact_id, identifier)
 );
 
-ALTER TABLE cookbook_artifact_versions ALTER meta_attributes SET STORAGE EXTERNAL;
-ALTER TABLE cookbook_artifact_versions ALTER meta_long_desc SET STORAGE EXTERNAL;
 ALTER TABLE cookbook_artifact_versions ALTER metadata SET STORAGE EXTERNAL;
 ALTER TABLE cookbook_artifact_versions ALTER serialized_object SET STORAGE EXTERNAL;
 

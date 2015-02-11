@@ -6,8 +6,6 @@ SELECT has_function_privilege(
   'insert_cookbook_artifact_version(varchar(255),
                                     bytea,
                                     bytea,
-                                    bytea,
-                                    bytea,
                                     char(32),
                                     char(32),
                                     text,

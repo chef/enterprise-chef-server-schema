@@ -9,8 +9,6 @@ BEGIN
   -- Columns
   RETURN QUERY SELECT columns_are('cookbook_artifact_versions', ARRAY['id',
                                                                       'identifier',
-                                                                      'meta_attributes',
-                                                                      'meta_long_desc',
                                                                       'metadata',
                                                                       'serialized_object',
                                                                       'created_at',
@@ -19,7 +17,6 @@ BEGIN
 
   RETURN QUERY SELECT col_is_pk('cookbook_artifact_versions', 'id');
 
-  RETURN QUERY SELECT chef_pgtap.col_is_blob('cookbook_artifact_versions', 'meta_attributes');
   RETURN QUERY SELECT chef_pgtap.col_is_blob('cookbook_artifact_versions', 'metadata');
   RETURN QUERY SELECT chef_pgtap.col_is_blob('cookbook_artifact_versions', 'serialized_object');
   RETURN QUERY SELECT chef_pgtap.col_is_timestamp('cookbook_artifact_versions', 'created_at');

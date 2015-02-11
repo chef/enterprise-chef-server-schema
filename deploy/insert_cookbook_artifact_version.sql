@@ -6,8 +6,6 @@ BEGIN;
 
 CREATE OR REPLACE FUNCTION insert_cookbook_artifact_version(
   p_identifier cookbook_artifact_versions.identifier%TYPE,
-  p_meta_attributes cookbook_artifact_versions.meta_attributes%TYPE,
-  p_meta_long_desc cookbook_artifact_versions.meta_long_desc%TYPE,
   p_metadata cookbook_artifact_versions.metadata%TYPE,
   p_serialized_object cookbook_artifact_versions.serialized_object%TYPE,
   p_last_updated_by cookbook_artifact_versions.last_updated_by%TYPE,
@@ -40,16 +38,12 @@ BEGIN
 
   -- then create the cookbook_artifact_version record
   INSERT INTO cookbook_artifact_versions(identifier,
-                                         meta_attributes,
-                                         meta_long_desc,
                                          metadata,
                                          serialized_object,
                                          created_at,
                                          last_updated_by,
                                          cookbook_artifact_id)
   VALUES (p_identifier,
-          p_meta_attributes,
-          p_meta_long_desc,
           p_metadata,
           p_serialized_object,
           NOW()::TIMESTAMP,
