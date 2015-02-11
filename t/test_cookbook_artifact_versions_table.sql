@@ -12,7 +12,7 @@ BEGIN
                                                                       'metadata',
                                                                       'serialized_object',
                                                                       'created_at',
-                                                                      'last_updated_by',
+                                                                      'created_by',
                                                                       'cookbook_artifact_id']);
 
   RETURN QUERY SELECT col_is_pk('cookbook_artifact_versions', 'id');
@@ -21,7 +21,7 @@ BEGIN
   RETURN QUERY SELECT chef_pgtap.col_is_blob('cookbook_artifact_versions', 'serialized_object');
   RETURN QUERY SELECT chef_pgtap.col_is_timestamp('cookbook_artifact_versions', 'created_at');
 
-  RETURN QUERY SELECT chef_pgtap.col_is_uuid('cookbook_artifact_versions', 'last_updated_by');
+  RETURN QUERY SELECT chef_pgtap.col_is_uuid('cookbook_artifact_versions', 'created_by');
 
   RETURN QUERY SELECT col_not_null('cookbook_artifact_versions', 'cookbook_artifact_id');
   RETURN QUERY SELECT col_type_is('cookbook_artifact_versions', 'cookbook_artifact_id', 'integer');
