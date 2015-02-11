@@ -10,8 +10,6 @@ CREATE OR REPLACE FUNCTION insert_cookbook_artifact_version(
   p_meta_long_desc cookbook_artifact_versions.meta_long_desc%TYPE,
   p_metadata cookbook_artifact_versions.metadata%TYPE,
   p_serialized_object cookbook_artifact_versions.serialized_object%TYPE,
-  p_updated_at cookbook_artifact_versions.updated_at%TYPE,
-  p_created_at cookbook_artifact_versions.created_at%TYPE,
   p_last_updated_by cookbook_artifact_versions.last_updated_by%TYPE,
   p_org_id cookbook_artifacts.org_id%TYPE,
   p_name cookbook_artifacts.name%TYPE,
@@ -46,7 +44,6 @@ BEGIN
                                          meta_long_desc,
                                          metadata,
                                          serialized_object,
-                                         updated_at,
                                          created_at,
                                          last_updated_by,
                                          cookbook_artifact_id)
@@ -55,8 +52,7 @@ BEGIN
           p_meta_long_desc,
           p_metadata,
           p_serialized_object,
-          p_updated_at,
-          p_created_at,
+          NOW()::TIMESTAMP,
           p_last_updated_by,
           v_cookbook_artifact_id)
   RETURNING id
