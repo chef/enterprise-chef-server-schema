@@ -5,7 +5,7 @@
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS cookbook_artifact_version_checksums(
-  cookbook_artifact_version_id CHAR(32) NOT NULL REFERENCES cookbook_artifact_versions(id),
+  cookbook_artifact_version_id BIGINT NOT NULL REFERENCES cookbook_artifact_versions(id),
   org_id CHAR(32) NOT NULL,
   checksum CHAR(32) NOT NULL,
   FOREIGN KEY (org_id, checksum)

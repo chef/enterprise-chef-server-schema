@@ -3,9 +3,8 @@
 BEGIN;
 
 SELECT id, identifier,
-       meta_attributes, meta_long_desc,
-       metadata, serialized_object, updated_at,
-       created_at, last_updated_by, cookbook_id
+       metadata, serialized_object, created_at
+       created_by, cookbook_artifact_id
 FROM cookbook_artifact_versions
 WHERE FALSE;
 
