@@ -63,3 +63,6 @@ cookbook_artifact_version_checksums [cookbook_artifact_versions] 2015-02-03T17:3
 insert_cookbook_artifact_version [cookbook_artifact_version_checksums] 2015-02-09T23:45:03Z Jean Rouge <jean@chef.io>
 delete_cookbook_artifact_version [cookbook_artifact_version_checksums] 2015-02-09T23:45:03Z Jean Rouge <jean@chef.io>
 @2.8.0 2015-02-09T23:46:59Z Jean Rouge <jean@chef.io> # Tagging with 2.8.0
+
+keys_update_tracking [multiple_keys] 2015-02-24T18:57:08Z Marc Paradise <marc@chef.io># keys_update_tracking - add last_updated_by and updated_at fields to keys
+@2.9.0 2015-02-24T18:57:42Z Marc Paradise <marc@chef.io># tag 2.9.0 for  keys update  tracking fields
