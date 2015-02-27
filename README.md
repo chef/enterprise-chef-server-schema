@@ -1,5 +1,8 @@
-Enterprise Chef Server PostgreSQL Schema
-========================================
+DEPRECATED: Enterprise Chef Server PostgreSQL Schema
+====================================================
+
+WARNING: Schema changes for Chef 12+ should happen in oc_erchef. NOT
+HERE.  YOU PROBABLY DON'T WANT TO BE HERE.
 
 This repository defines additions to the
 [Open Source Chef Server schema][] that will create an Enterprise Chef
