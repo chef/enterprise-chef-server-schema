@@ -68,3 +68,4 @@ keys_update_tracking [multiple_keys] 2015-02-24T18:57:08Z Marc Paradise <marc@ch
 @2.9.0 2015-02-24T18:57:42Z Marc Paradise <marc@chef.io># tag 2.9.0 for  keys update  tracking fields
 
 policies-revision-id [policies] 2015-02-26T22:54:21Z Daniel DeLeo <ddeleo@lorentz.local># Add revision_id column for policies
+policy_groups 2015-02-27T16:48:33Z Daniel DeLeo <ddeleo@lorentz.local># Create policy_groups as a separate table
